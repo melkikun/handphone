@@ -109,7 +109,7 @@
                            </a>
                         </div>
                      </div>
-                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
+                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6 hide">
                         <div class="div-square">
                            <a href="<?php echo(base_url("admin/lihatrelasi")) ?>"  style="color: green;">
                               <i class="fa fa-circle-o-notch fa-5x"></i>
