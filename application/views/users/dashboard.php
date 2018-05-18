@@ -53,23 +53,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="text-center" style="vertical-align: middle;">1</td>
-                                            <td class="text-center" style="vertical-align: middle;">G01</td>
-                                            <td class="text-left" style="vertical-align: middle;">Touch Screen bergerak sendiri</td>
+                                        <?php foreach ($gejala as $key => $value) {
+                                            ?>
+                                            <tr>
+                                            <td class="text-center" style="vertical-align: middle;"><?php echo($key+1) ?></td>
+                                            <td class="text-center" style="vertical-align: middle;"><?php echo($value['kode']) ?></td>
+                                            <td class="text-left" style="vertical-align: middle;"><?php echo($value['nama']) ?></td>
                                             <td class="text-center" style="vertical-align: middle;">
-                                                <select name="" id="input" class="form-control" required="required">
-                                                    <option value="">0.0</option>
-                                                    <option value="">0.2</option>
-                                                    <option value="">0.4</option>
-                                                    <option value="">0.6</option>
-                                                    <option value="">0.8</option>
+                                                <select name="cf<?php echo($value['id']) ?>" id="cf<?php echo($value['id']) ?>" class="form-control" required="required" onchange="rubahCf(<?php echo($value['id']) ?>)">
+                                                    <option value="0.0">0.0</option>
+                                                    <option value="0.2">0.2</option>
+                                                    <option value="0.4">0.4</option>
+                                                    <option value="0.6">0.6</option>
+                                                    <option value="0.8">0.8</option>
                                                 </select>
                                             </td>
-                                            <td class="text-center" style="vertical-align: middle;">
-                                                <input type="checkbox" class="form-control" name="g1" disabled>
+                                            <td class="text-center" style="vertical-align: middle;" >
+                                                <input type="checkbox" class="form-control" name="cb<?php echo($value['id']) ?>" id="cb<?php echo($value['id']) ?>" disabled>
                                             </td>
                                         </tr>
+                                            <?php
+                                        } ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -94,8 +99,17 @@
         <script src="<?php echo base_url("assets/users/"); ?>template/js/script.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/contactform/contactform.js"></script>
         <script>
-                                    function go() {
-                                        window.location.href = "kesimpulan.php";
+                                    function rubahCf(param) {
+                                        var cf = ($('#cf'+param).val());
+                                        if(cf == 0.0){
+                                             $('#cb'+param).removeAttr('disabled');
+                                            $('#cb'+param).prop("checked", false);
+                                             $('#cb'+param).attr('disabled',"");
+                                        }else{
+                                            $('#cb'+param).removeAttr('disabled');
+                                            $('#cb'+param).prop("checked", true);
+                                             $('#cb'+param).attr('disabled',"");
+                                        }
                                     }
 
         </script>
