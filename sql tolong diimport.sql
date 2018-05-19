@@ -24,27 +24,54 @@ CREATE TABLE IF NOT EXISTS `gejala_kerusakan` (
   `kode` varchar(5) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `kode` (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
--- Dumping data for table faisal.gejala_kerusakan: ~15 rows (approximately)
+-- Dumping data for table faisal.gejala_kerusakan: ~42 rows (approximately)
 DELETE FROM `gejala_kerusakan`;
 /*!40000 ALTER TABLE `gejala_kerusakan` DISABLE KEYS */;
 INSERT INTO `gejala_kerusakan` (`id`, `nama`, `cf`, `kode`) VALUES
-	(1, 'Touch Screen bergerak sendiri', 0.6, 'G01'),
-	(2, 'Touch Screen tidak berfungsi sama sekali', 0.6, 'G02'),
-	(3, 'Touch Screen tidak berfungsi sebagian', 0.6, 'G03'),
-	(4, 'LCD Blank putih', 0.6, 'G04'),
-	(5, 'Muncul bercak di LCD', 0.6, 'G05'),
-	(11, 'Tampilan Warna dari LCD agak buram', 0.6, 'G06'),
-	(12, 'Muncul bintik-bintik hitam/putih di LCD', 0.6, 'G07'),
-	(13, 'Ponsel mati total', 0.6, 'G08'),
-	(14, 'Ponsel cepat panas', 0.6, 'G09'),
-	(15, 'Batrai sangat boros', 0.6, 'G10'),
-	(16, 'Speaker mati', 0.6, 'G11'),
-	(17, 'Suara Speaker tidak jelas', 0.6, 'G12'),
-	(18, 'Volume full tapi suara speaker sangat pelan', 0.6, 'G13'),
-	(19, 'Ponsel mati ketika lepas dari charger', 0.6, 'G14'),
-	(20, 'Ponsel tidak bisa Charging', 0.6, 'G15');
+	(1, 'Touch Screen bergerak sendiri', 0.6, 'G1'),
+	(2, 'Touch Screen tidak berfungsi sama sekali', 0.6, 'G2'),
+	(3, 'Touch Screen tidak berfungsi sebagian', 0.6, 'G3'),
+	(4, 'LCD Blank putih', 0.6, 'G4'),
+	(5, 'Muncul bercak di LCD', 0.6, 'G5'),
+	(6, 'Tampilan Warna dari LCD agak buram', 0.6, 'G6'),
+	(7, 'Muncul bintik-bintik hitam/putih di LCD', 0.6, 'G7'),
+	(8, 'Ponsel mati total', 0.6, 'G8'),
+	(9, 'Ponsel cepat panas', 0.6, 'G9'),
+	(10, 'Batrai sangat boros', 0.6, 'G10'),
+	(11, 'Speaker mati', 0.6, 'G11'),
+	(12, 'Suara Speaker tidak jelas', 0.6, 'G12'),
+	(13, 'Volume full tapi suara speaker sangat pelan', 0.6, 'G13'),
+	(14, 'Ponsel mati ketika lepas dari charger', 0.6, 'G14'),
+	(15, 'Ponsel tidak bisa Charging', 0.6, 'G15'),
+	(16, 'Charging susah', 0.6, 'G16'),
+	(17, 'Proses Charging sangat lama', 0.6, 'G17'),
+	(18, 'Muncul bintik-bintik berwarna ketika membuka aplikasi kamera', 0.6, 'G18'),
+	(19, 'Aplikasi kamera tidak dapat dibuka', 0.6, 'G19'),
+	(20, 'Ketika aplikasi kamera dibuka, ponsel melakukan restart', 0.6, 'G20'),
+	(21, 'Ketika aplikasi kamera dibuka, tampilan blank putih/hitam', 0.6, 'G21'),
+	(22, 'Autofokus kamera tidak berfungsi', 0.6, 'G22'),
+	(23, 'Lampu flash redup', 0.6, 'G23'),
+	(24, 'Lampu flash tidak menyala pada aplikasi kamera dan senter', 0.6, 'G24'),
+	(25, 'Port charger/USB agak longgar', 0.6, 'G25'),
+	(26, 'Ponsel tidak dapat terhubung ke PC/Laptop melalui kabel USB', 0.6, 'G26'),
+	(27, 'Simcard tiba-tiba eject', 0.6, 'G27'),
+	(28, 'Simcard tidak terdeteksi', 0.6, 'G28'),
+	(29, 'Muncul tulisan "insert simcard" padahal simcard sudah terpasang dengan baik', 0.6, 'G29'),
+	(30, 'Kartu SD tiba-tiba eject', 0.6, 'G30'),
+	(31, 'Kartu SD tidak terdeteksi', 0.6, 'G31'),
+	(32, 'Pada saat melakukan panggilan suara kita tidak terdengar', 0.6, 'G32'),
+	(33, 'Suara tidak keluar ketika digunakan untuk merekam video/audio', 0.6, 'G33'),
+	(34, 'Signal naik turun/tidak stabil', 0.6, 'G34'),
+	(35, 'Hanya tampil salah satu signal saja', 0.6, 'G35'),
+	(36, 'Pada saat signal tampil, ponsel langsung mati', 0.6, 'G36'),
+	(37, 'Lampu LED mati', 0.6, 'G37'),
+	(38, 'Lampu LED redup', 0.6, 'G38'),
+	(39, 'Lampu LED menyala lebih dari 1 warna', 0.6, 'G39'),
+	(40, 'Ponsel sering restart sendiri', 0.6, 'G40'),
+	(41, 'Signal sering hilang', 0.6, 'G41'),
+	(42, 'Ponsel boot loop', 0.6, 'G42');
 /*!40000 ALTER TABLE `gejala_kerusakan` ENABLE KEYS */;
 
 -- Dumping structure for table faisal.jenis_kerusakan
@@ -85,17 +112,14 @@ CREATE TABLE IF NOT EXISTS `relasi` (
   KEY `FK_relasi_jenis_kerusakan` (`id_jenis`),
   KEY `FK_relasi_gejala_kerusakan` (`id_gejala`),
   KEY `FK_relasi_solusi_kerusakan` (`id_solusi`),
-  CONSTRAINT `FK_relasi_gejala_kerusakan` FOREIGN KEY (`id_gejala`) REFERENCES `gejala_kerusakan` (`id`),
-  CONSTRAINT `FK_relasi_jenis_kerusakan` FOREIGN KEY (`id_jenis`) REFERENCES `jenis_kerusakan` (`id`),
-  CONSTRAINT `FK_relasi_solusi_kerusakan` FOREIGN KEY (`id_solusi`) REFERENCES `solusi_kerusakan` (`id`)
+  CONSTRAINT `FK_relasi_gejala_kerusakan` FOREIGN KEY (`id_gejala`) REFERENCES `gejala_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_relasi_jenis_kerusakan` FOREIGN KEY (`id_jenis`) REFERENCES `jenis_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_relasi_solusi_kerusakan` FOREIGN KEY (`id_solusi`) REFERENCES `solusi_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- Dumping data for table faisal.relasi: ~2 rows (approximately)
+-- Dumping data for table faisal.relasi: ~0 rows (approximately)
 DELETE FROM `relasi`;
 /*!40000 ALTER TABLE `relasi` DISABLE KEYS */;
-INSERT INTO `relasi` (`id`, `id_jenis`, `id_gejala`, `id_solusi`) VALUES
-	(5, 1, 1, 1),
-	(6, 1, 3, 1);
 /*!40000 ALTER TABLE `relasi` ENABLE KEYS */;
 
 -- Dumping structure for table faisal.solusi_kerusakan

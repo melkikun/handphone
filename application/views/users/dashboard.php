@@ -81,7 +81,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <button type="submit" class="btn btn-danger btn-block" style="width: 100%;">Submit</button>
+                                <button type="button" onclick="submit();" class="btn btn-danger btn-block" style="width: 100%;">Submit</button>
                             </div>
                         </div>
                     </form>
@@ -110,6 +110,10 @@
                                             $('#cb'+param).prop("checked", true);
                                              $('#cb'+param).attr('disabled',"");
                                         }
+                                    }
+
+                                    function submit(){
+                                        
                                     }
 
         </script>
