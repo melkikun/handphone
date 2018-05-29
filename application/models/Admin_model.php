@@ -180,17 +180,34 @@ class Admin_model extends CI_Model
     function insertRelasi($param)
     {
         //delete baris
-        $deleteJenis = $this->db->delete('relasi', array(
-            'id_jenis' => $param['jenis'],
-            'id_solusi' => $param['solusi']
-        ));
-        
+        // $deleteJenis = $this->db->delete('relasi', array(
+        //     'id_jenis' => $param['jenis'],
+        //     'id_solusi' => $param['solusi']
+        // ));
+        $gejala = "";
+        for($i = 0; $i < count($param['gejala']);$i++){
+            $gejala.="'".$param['gejala'][$i]."',";
+        }
+        $gejalax = substr($gejala, 0,strlen($gejala)-1);
+        $jenisx = $param['jenis'];
+        $solusix = $param['solusi'];
+        $delete = "delete from relasi where id_jenis = $jenisx and id_solusi = $solusix and id_gejala in ($gejalax)";
+        $query = $this->db->query($delete);
+
+        $max_relasi = "select distinct max(id_relasi) as maximum from relasi";
+        $max_query = $this->db->query($max_relasi);
+        $max_result = $max_query->result_array();
+        $max = "";
+        foreach ($max_result as $value) {
+            $max = $value['maximum']+1;
+        }
         $array = array();
         for ($i = 0; $i < count($param['gejala']); $i++) {
             $data = array(
                 "id_jenis" => $param['jenis'],
                 "id_solusi" => $param['solusi'],
-                "id_gejala" => $param['gejala'][$i]
+                "id_gejala" => $param['gejala'][$i],
+                "id_relasi" => $max
             );
             array_push($array, $data);
         }
