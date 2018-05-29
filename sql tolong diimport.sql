@@ -108,6 +108,7 @@ CREATE TABLE IF NOT EXISTS `relasi` (
   `id_jenis` int(11) DEFAULT NULL,
   `id_gejala` int(11) DEFAULT NULL,
   `id_solusi` int(11) DEFAULT NULL,
+  `id_relasi` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_relasi_jenis_kerusakan` (`id_jenis`),
   KEY `FK_relasi_gejala_kerusakan` (`id_gejala`),
@@ -115,11 +116,28 @@ CREATE TABLE IF NOT EXISTS `relasi` (
   CONSTRAINT `FK_relasi_gejala_kerusakan` FOREIGN KEY (`id_gejala`) REFERENCES `gejala_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_relasi_jenis_kerusakan` FOREIGN KEY (`id_jenis`) REFERENCES `jenis_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_relasi_solusi_kerusakan` FOREIGN KEY (`id_solusi`) REFERENCES `solusi_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
--- Dumping data for table faisal.relasi: ~0 rows (approximately)
+-- Dumping data for table faisal.relasi: ~16 rows (approximately)
 DELETE FROM `relasi`;
 /*!40000 ALTER TABLE `relasi` DISABLE KEYS */;
+INSERT INTO `relasi` (`id`, `id_jenis`, `id_gejala`, `id_solusi`, `id_relasi`) VALUES
+	(7, 1, 1, 1, 1),
+	(8, 1, 3, 1, 1),
+	(9, 1, 1, 2, 2),
+	(10, 1, 2, 2, 2),
+	(11, 2, 4, 2, 3),
+	(12, 2, 5, 2, 3),
+	(13, 2, 6, 1, 4),
+	(14, 2, 7, 1, 4),
+	(15, 3, 10, 1, 5),
+	(16, 3, 40, 1, 5),
+	(18, 3, 8, 3, 6),
+	(19, 3, 9, 3, 6),
+	(20, 3, 42, 3, 6),
+	(21, 4, 11, 4, 7),
+	(22, 4, 12, 4, 7),
+	(23, 4, 13, 4, 7);
 /*!40000 ALTER TABLE `relasi` ENABLE KEYS */;
 
 -- Dumping structure for table faisal.solusi_kerusakan
