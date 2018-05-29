@@ -27,9 +27,8 @@ class Admin_model extends CI_Model
     
     function lihatGejalaKerusakan()
     {
-        $this->db->from('gejala_kerusakan');
-        $this->db->order_by('kode', 'asc');
-        $query = $this->db->get();
+       $sql = "select * from gejala_kerusakan order by cast(replace(kode, 'G', '') as unsigned) asc";
+       $query  = $this->db->query($sql);
         return $query->result_array();
     }
     

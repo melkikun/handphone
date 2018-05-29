@@ -98,3 +98,7 @@ $route['admin/editsolusi/(:num)'] = 'admin_controller/editSolusi/$1';
 $route['admin/submit/editgejala'] = 'admin_controller/postEditGejala';
 $route['admin/submit/editjenis'] = 'admin_controller/postEditJenis';
 $route['admin/submit/editsolusi'] = 'admin_controller/postEditSolusi';
+
+
+//submit user
+$route['user/submit/cf'] = 'user_controller/submit';

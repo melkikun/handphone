@@ -3,11 +3,7 @@
                 <nav class="navbar">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a href="dashboard.php" class="navbar-brand">
-                                <?php 
-                                echo ucwords("sistem analisis kerusakan hardware pada asus zenfone 5 menggunakan metode forward chaining")
-                                ?>
-                            </a>
+
                         </div>
                         <div class="navbar-collapse collapse" id="ftheme">
 

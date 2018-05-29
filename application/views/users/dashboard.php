@@ -3,21 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="widtd=device-widtd, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>MyBiz Bootstrap Theme</title>
+        <title>Halaman Utama Users</title>
         <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
         <meta name="keywords" content="free website templates, free bootstrap tdemes, free template, free bootstrap, free website template">
 
         <!-- <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Raleway" rel="stylesheet"> -->
         <link rel="stylesheet" href="<?php echo base_url("assets/users/"); ?>template/css/flexslider.css">
         <link rel="stylesheet" href="<?php echo base_url("assets/users/"); ?>template/css/bootstrap.min.css">
+         <!-- DATATABLES -->
+      <link href="<?php echo base_url("assets/others"); ?>/DataTables/datatables.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="<?php echo base_url("assets/users/"); ?>template/css/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url("assets/users/"); ?>template/css/style.css">
-        <!-- =======================================================
-            Theme Name: MyBiz
-            Theme URL: https://bootstrapmade.com/mybiz-free-business-bootstrap-tdeme/
-            Autdor: BootstrapMade.com
-            Autdor URL: https://bootstrapmade.com
-        ======================================================= -->
     </head>
     <body id="top" data-spy="scroll">
         <!--top header-->
@@ -30,7 +26,7 @@
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
                         <div class="service-heading">
                             <h2>Proses Input Data</h2> 
-                            <p>Pilih minimal 2 gejala berikut ini</p>
+                            <p>Pilih minimal 1 gejala berikut ini</p>
                         </div>
                     </div>
                 </div>   	
@@ -39,10 +35,9 @@
             <!--services wrapper-->
             <section>
                 <div>
-                    <form action="kesimpulan.php" method="post">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-striped table-bordered">
+                                <table class="table table-striped table-bordered" id="table-input">
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="vertical-align: middle;">No</th>
@@ -84,7 +79,6 @@
                                 <button type="button" onclick="submit();" class="btn btn-danger btn-block" style="width: 100%;">Submit</button>
                             </div>
                         </div>
-                    </form>
                 </div>
             </section>
             <hr/>
@@ -93,12 +87,20 @@
         <!-- jQuery -->
         <script src="<?php echo base_url("assets/users/"); ?>template/js/jquery.min.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/js/bootstrap.min.js"></script>
+        <!-- DATATABLE -->
+      <script src="<?php echo base_url("assets/others"); ?>/DataTables/datatables.min.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/js/jquery.flexslider.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/js/jquery.inview.js"></script>
         <!-- <script src="https://maps.google.com/maps/api/js?sensor=true"></script> -->
         <script src="<?php echo base_url("assets/users/"); ?>template/js/script.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/contactform/contactform.js"></script>
         <script>
+            var table = $('#table-input').dataTable({
+        // scrolY: "600px"
+        paging:false,
+        order:false,
+        info:false
+    });
                                     function rubahCf(param) {
                                         var cf = ($('#cf'+param).val());
                                         if(cf == 0.0){
@@ -113,7 +115,28 @@
                                     }
 
                                     function submit(){
-                                        
+                                        var cfUser = "";
+                                        var idGejala = "";
+                                        var rows = $('#table-input').dataTable().fnGetNodes();
+                                        for (var x = 0; x < rows.length; x++) {
+                                            var nilaiCfUser = $(rows[x]).find("td:eq(3)").find("select").val();
+                                            if(nilaiCfUser != 0.0){
+                                                cfUser += "'"+nilaiCfUser+"',";
+                                                var id = $(rows[x]).find("td:eq(3)").find("select").attr("id").replace("cf", "");
+                                                idGejala += "'"+id+"',";
+                                            }
+                                        }
+                                        if(cfUser != ""){
+                                            var cf = confirm("Apa anda yakin submit?");
+                                            if(cf == true){
+                                           window.location.href="<?php echo base_url("user/submit/cf"); ?>" + "?cf="+cfUser +"&id="+idGejala;
+                                            }
+                                            
+                                        }else{
+                                            alert("anda tidak mencentang apapun")
+                                        }
+                                        console.log(cfUser);
+                                        console.log(idGejala);
                                     }
 
         </script>
