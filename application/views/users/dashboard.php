@@ -61,6 +61,7 @@
                                                     <option value="0.4">0.4</option>
                                                     <option value="0.6">0.6</option>
                                                     <option value="0.8">0.8</option>
+                                                    <option value="1.0">1.0</option>
                                                 </select>
                                             </td>
                                             <td class="text-center" style="vertical-align: middle;" >
