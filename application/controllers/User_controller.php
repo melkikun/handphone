@@ -92,7 +92,6 @@ class User_controller extends CI_Controller
     }
 
     function userLogin() {
-        echo(123);
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
         if ($this->form_validation->run() == FALSE) {
