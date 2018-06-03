@@ -116,14 +116,12 @@ CREATE TABLE IF NOT EXISTS `relasi` (
   CONSTRAINT `FK_relasi_gejala_kerusakan` FOREIGN KEY (`id_gejala`) REFERENCES `gejala_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_relasi_jenis_kerusakan` FOREIGN KEY (`id_jenis`) REFERENCES `jenis_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_relasi_solusi_kerusakan` FOREIGN KEY (`id_solusi`) REFERENCES `solusi_kerusakan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
--- Dumping data for table faisal.relasi: ~16 rows (approximately)
+-- Dumping data for table faisal.relasi: ~22 rows (approximately)
 DELETE FROM `relasi`;
 /*!40000 ALTER TABLE `relasi` DISABLE KEYS */;
 INSERT INTO `relasi` (`id`, `id_jenis`, `id_gejala`, `id_solusi`, `id_relasi`) VALUES
-	(7, 1, 1, 1, 1),
-	(8, 1, 3, 1, 1),
 	(9, 1, 1, 2, 2),
 	(10, 1, 2, 2, 2),
 	(11, 2, 4, 2, 3),
@@ -137,7 +135,15 @@ INSERT INTO `relasi` (`id`, `id_jenis`, `id_gejala`, `id_solusi`, `id_relasi`) V
 	(20, 3, 42, 3, 6),
 	(21, 4, 11, 4, 7),
 	(22, 4, 12, 4, 7),
-	(23, 4, 13, 4, 7);
+	(23, 4, 13, 4, 7),
+	(26, 1, 1, 1, 8),
+	(27, 1, 3, 1, 8),
+	(28, 5, 10, 1, 9),
+	(29, 5, 16, 1, 9),
+	(30, 5, 17, 1, 9),
+	(31, 5, 8, 5, 10),
+	(32, 5, 14, 5, 10),
+	(33, 5, 15, 5, 10);
 /*!40000 ALTER TABLE `relasi` ENABLE KEYS */;
 
 -- Dumping structure for table faisal.solusi_kerusakan
@@ -173,13 +179,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  `role` int(11) DEFAULT NULL,
+  `role` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- Dumping data for table faisal.users: ~0 rows (approximately)
+-- Dumping data for table faisal.users: ~1 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
+	(3, 'admin', 'admin', 0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
