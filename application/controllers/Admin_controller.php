@@ -334,8 +334,6 @@ where r.id_jenis = '$jenis' and r.id_solusi = '$solusi'");
     
     function lihat_relasi()
     {
-        $data['gejala'] = $this->Admin_model->lihatGejalaKerusakan();
-        $data['jenis'] = $this->Admin_model->lihatJenisKerusakan();
         $data['solusi'] = $this->Admin_model->lihatSolusiKerusakan();
         $data['footer'] = $this->load->view("admin/footer.php", '', TRUE);
         $data['header'] = $this->load->view("admin/header.php", '', TRUE);

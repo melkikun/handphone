@@ -32,7 +32,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/tambahgejala")?>" style="color: red;">
-                              <i class="fa fa-circle-o-notch fa-5x"></i>
+                              <i class="fa fa-plus-circle fa-5x"></i>
                               <h4>Tambah Gejala Kerusakan</h4>
                            </a>
                         </div>
@@ -48,7 +48,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/editgejala")?>"  style="color: red;">
-                              <i class="fa fa-envelope-o fa-5x"></i>
+                              <i class="fa fa-key fa-5x"></i>
                               <h4>Edit Gejala Kerusakan</h4>
                            </a>
                         </div>
@@ -56,7 +56,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/tambahjenis")?>" >
-                              <i class="fa fa-lightbulb-o fa-5x"></i>
+                              <i class="fa fa-plus-circle fa-5x"></i>
                               <h4>Tambah Jenis Kerusakan</h4>
                            </a>
                         </div>
@@ -72,7 +72,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/editjenis")?>" >
-                              <i class="fa fa-users fa-5x"></i>
+                              <i class="fa fa-key fa-5x"></i>
                               <h4>Edit Jenis Kerusakan</h4>
                            </a>
                         </div>
@@ -80,7 +80,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/tambahsolusi")?>"  style="color: black;">
-                              <i class="fa fa-key fa-5x"></i>
+                              <i class="fa fa-plus-circle fa-5x"></i>
                               <h4>Tambah Solusi</h4>
                            </a>
                         </div>
@@ -96,7 +96,7 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/editsolusi")?>"  style="color: black;">
-                              <i class="fa fa-comments-o fa-5x"></i>
+                              <i class="fa fa-key fa-5x"></i>
                               <h4>Edit Solusi</h4>
                            </a>
                         </div>
@@ -104,12 +104,12 @@
                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
                            <a href="<?php echo base_url("admin/tambahrelasi");?>"  style="color: green;">
-                              <i class="fa fa-clipboard fa-5x"></i>
+                              <i class="fa fa-plus-circle fa-5x"></i>
                               <h4>Tambah Relasi</h4>
                            </a>
                         </div>
                      </div>
-                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6 hide">
+                      <div class="col-lg-4 col-md-3 col-sm-3 col-xs-6 ">
                         <div class="div-square">
                            <a href="<?php echo(base_url("admin/lihatrelasi")) ?>"  style="color: green;">
                               <i class="fa fa-circle-o-notch fa-5x"></i>

@@ -102,3 +102,13 @@ $route['admin/submit/editsolusi'] = 'admin_controller/postEditSolusi';
 
 //submit user
 $route['user/submit/cf'] = 'user_controller/submit';
+
+
+//login & register
+
+$route['login']='user_controller/login';
+$route['logout']='user_controller/logout';
+$route['register']='user_controller/register';
+
+$route['user/register']='user_controller/userRegister';
+$route['user/login']='user_controller/userLogin';

@@ -70,9 +70,8 @@ class Admin_model extends CI_Model
     }
     function lihatSolusiKerusakan()
     {
-        $this->db->from('solusi_kerusakan');
-        $this->db->order_by('nama', 'asc');
-        $query = $this->db->get();
+        $sql = "select * from solusi_kerusakan order by cast(replace(kode, 'S', '') as unsigned) asc";
+       $query  = $this->db->query($sql);
         return $query->result_array();
     }
     
@@ -215,7 +214,28 @@ class Admin_model extends CI_Model
         
         return $insertGejala;
     }
-    
+    //insert ke tabel user
+    function registerUser($param) {
+        $array = array(
+            "role"=>"0"
+        );
+        array_merge($param, $array);
+        $insert = $this->db->insert("users", $param);
+        return $insert;
+    }
+
+    //cek duplikat apakah username sudah ada apa tidak di table user
+    function cekDuplikatUserRegister($username) {
+        $this->db->select("username")->from("users")->where("username", $username);
+        $duplikat = $this->db->get();
+        return $duplikat;
+    }
+
+    //fungsi login pada user
+    function loginUser($param) {
+        $query = $this->db->get_where('users', $param);
+        return $query;
+    }
 }
 
 /* End of file Gejala_kerusakan */

@@ -44,7 +44,7 @@
                                             <th class="text-center" style="vertical-align: middle;">Kode Gejala</th>
                                             <th class="text-center" style="vertical-align: middle;">Nama Gejala</th>
                                             <th class="text-center" style="vertical-align: middle;">CF User</th>
-                                            <th class="text-center" style="vertical-align: middle;">Centang</th>
+                                            <th class="text-center" style="vertical-align: middle;">Pilih</th>
                                         </tr>
                                     </thead>
                                     <tbody>

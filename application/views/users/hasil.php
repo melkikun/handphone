@@ -35,11 +35,11 @@
                                     <thead>
                                         <tr>
                                             <th class="text-center" style="vertical-align: middle;">No</th>
+                                            <th class="text-center" style="vertical-align: middle;">Gejala Kerusakan</th>
                                             <th class="text-center" style="vertical-align: middle;">Jenis Kerusakan</th>
-                                            <th class="text-center" style="vertical-align: middle;">Gejala</th>
-                                            <th class="text-center" style="vertical-align: middle;">Solusi</th>
+                                            <th class="text-center" style="vertical-align: middle;">Solusi Kerusakan</th>
                                             <th class="text-center" style="vertical-align: middle;">Cf User</th>
-                                            <th class="text-center" style="vertical-align: middle;">% Prosentase</th>
+                                            <th class="text-center" style="vertical-align: middle;">%(Prosentase)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -58,25 +58,26 @@ WHERE r.id_gejala IN($idInclude)";
                                             ?>
                                             <tr>
                                             	<td class="text-center"><?php echo($key+1) ?></td>
+                                                <td>
+                                                    <?php 
+                                                    $nomer = array();
+                                                    $cfPakar = array();
+                                                    $id_solusi = $value['id_solusi']; 
+                                                    $id_relasi = $value['id_relasi'];
+                                                        $sqlx= "select r.*, gk.nama, gk.kode, gk.cf from relasi r 
+                                                                inner join gejala_kerusakan gk 
+                                                                on gk.id = r.id_gejala
+                                                                where r.id_solusi = $id_solusi and r.id_relasi = $id_relasi and r.id_gejala in ($idInclude)";
+                                                                $queryx = $this->db->query($sqlx);
+                                                        foreach ($queryx->result_array() as $valuex) {
+                                                            echo($valuex['kode']." -- ". $valuex['nama'] . " | ($valuex[cf]) ")."<br>";
+                                                            array_push($nomer, $valuex['id_gejala']);
+                                                            array_push($cfPakar, $valuex['cf']);
+                                                        }
+                                                     ?>
+                                                </td>
                                             	<td><?php echo $value['kode_jenis']." -- ".$value['nama_jenis'] ?></td>
-                                            	<td>
-                                            		<?php 
-                                            		$nomer = array();
-                                            		$cfPakar = array();
-                                            		$id_solusi = $value['id_solusi']; 
-                                            		$id_relasi = $value['id_relasi'];
-                                            			$sqlx= "select r.*, gk.nama, gk.kode, gk.cf from relasi r 
-																inner join gejala_kerusakan gk 
-																on gk.id = r.id_gejala
-																where r.id_solusi = $id_solusi and r.id_relasi = $id_relasi and r.id_gejala in ($idInclude)";
-																$queryx = $this->db->query($sqlx);
-                                            			foreach ($queryx->result_array() as $valuex) {
-                                            				echo($valuex['kode']." -- ". $valuex['nama'] . " | ($valuex[cf]) ")."<br>";
-                                            				array_push($nomer, $valuex['id_gejala']);
-                                            				array_push($cfPakar, $valuex['cf']);
-                                            			}
-                                            		 ?>
-                                            	</td>
+                                            	
                                             	<td><?php echo $value['kode_solusi']." -- ".$value['nama_solusi'] ?></td>
                                             	<td class="text-center">
                                             		<?php 

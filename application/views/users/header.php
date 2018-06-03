@@ -5,14 +5,16 @@
                         <div class="navbar-header">
                              <a href="<?php echo(base_url()) ?>" class="navbar-brand">  +
                                <?php  
-                                echo ucwords("sistem analisis kerusakan hardware pada asus zenfone 5 menggunakan metode forward chaining") ;
+                                echo ucwords("sistem analisis kerusakan hardware pada asus zenfone menggunakan metode forward chaining") ;
                                 ?> 
                             </a>
                         </div>
                         <div class="navbar-collapse collapse" id="ftheme">
 
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="index.php">Logout</a></li>
+                                <li><a style="color: red;">Selamat Datang <?php echo ($_SESSION['logged_in']['username']) ?></a></li>
+                                <li><a>|||</a></li>
+                                <li><a href="<?php echo base_url("logout"); ?>">Logout</a></li>
                             </ul>
                         </div>
                     </div>

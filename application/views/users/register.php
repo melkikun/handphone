@@ -13,9 +13,9 @@
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
         <meta name="author" content="Codrops" />
         <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="assets/login/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="assets/login/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="assets/login/css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/animate-custom.css" />
     </head>
     <body>
         <div class="container">
@@ -29,31 +29,48 @@
                 <div id="container_demo" >
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form  action="index.php" autocomplete="on"> 
+                            <?php
+      if($this->session->flashdata('gagal_register')){
+        ?>
+      <div class="alert alert-danger text-center" style="text-align: center; color: red;">
+        <strong><?php echo $this->session->flashdata('gagal_register')?></strong> 
+      </div>
+      <?php
+    }
+    ?>
+    <?php
+      if($this->session->flashdata('duplikat')){
+        ?>
+      <div class="alert alert-danger text-center text-center" style="text-align: center; color: red;">
+        <strong><?php echo $this->session->flashdata('duplikat')?></strong> 
+      </div>
+      <?php
+    }
+   
+    $attribute = array("method"=>"post", "class"=>"form", "id"=>"form-register"); 
+    echo form_open('user/register', $attribute);
+    ?>
                                 <h1> Sign up </h1> 
                                 <p> 
                                     <label for="usernamesignup" class="uname" data-icon="u">Username</label>
-                                    <input id="usernamesignup" name="usernamesignup" required="required" 
+                                    <input id="usernamesignup" name="username" required="required" 
                                            type="text" placeholder="Masukkan Username" />
+                                            <?php echo form_error('username', '<div class="text-danger">', '</div>'); ?>
                                 </p>
                                 <p> 
                                     <label for="passwordsignup" class="youpasswd" data-icon="p">Password</label>
-                                    <input id="passwordsignup" name="passwordsignup" required="required" 
+                                    <input id="passwordsignup" name="password" required="required" 
                                            type="password" placeholder="Masukkan Password"/>
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Confirm Password </label>
-                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" 
-                                           placeholder="Konfirmasi Password"/>
+                                           <?php echo form_error('password', '<div class="text-danger">', '</div>'); ?>
                                 </p>
                                 <p class="signin button"> 
                                     <input type="submit" value="Sign up"/> 
                                 </p>
                                 <p class="change_link">  
                                     Sudah jadi member?
-                                    <a href="index.php" class="to_register"> Go to Login </a>
+                                    <a href="<?php echo base_url("login") ?>" class="to_register"> Go to Login </a>
                                 </p>
-                            </form>
+                                <?php echo form_close();?>
                         </div>
                     </div>
                 </div>

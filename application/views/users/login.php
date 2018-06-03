@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="UTF-8" />
@@ -13,9 +9,9 @@
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
         <meta name="author" content="Codrops" />
         <link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="assets/login/css/demo.css" />
-        <link rel="stylesheet" type="text/css" href="assets/login/css/style.css" />
-        <link rel="stylesheet" type="text/css" href="assets/login/css/animate-custom.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/users/"); ?>login/css/animate-custom.css" />
     </head>
     <body>
         <div class="container">
@@ -29,30 +25,47 @@
                 <div id="container_demo" >
                     <div id="wrapper">
                         <div id="login" class="animate form">
-                            <form method="post" action="dashboard.php" autocomplete="on"> 
+                            <?php
+                if ($this->session->flashdata('berhasil_register')) {
+                    ?>
+                    <div class="alert alert-success text-center" style="text-align: center; color: red;">
+                        <strong><?php echo $this->session->flashdata('berhasil_register') ?></strong> 
+                    </div>
+                    <?php
+                }
+                if ($this->session->flashdata('gagal_login')) {
+                    ?>
+                    <div class="alert alert-danger text-center" style="text-align: center; color: red;">
+                        <strong><?php echo $this->session->flashdata('gagal_login') ?></strong> 
+                    </div>
+                    <?php
+                }
+                ?>
+                <?php
+                $attribute = array("method" => "post", "id" => "form-login", "class" => "form");
+                echo form_open("user/login", $attribute);
+                ?>
                                 <h1>Log in</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u" > Username </label>
-                                    <input id="username" name="username" required="required" value="faisal"
-                                           type="text" placeholder="Masukkan Username Anda"/>
+                                    <input id="username" name="username" required="required" type="text" placeholder="Masukkan Username Anda"/>
+                                    <?php echo form_error('username', '<div class="text-danger">', '</div>'); ?>
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p"> password </label>
-                                    <input id="password" name="password" required="required" type="password"   value="faisal"
-                                           placeholder="Masukkan password Anda" /> 
-                                </p>
-                                <p class="keeplogin"> 
-                                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-                                    <label for="loginkeeping">Keep me logged in</label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="Masukkan password Anda" />
+                                     <?php echo form_error('password', '<div class="text-danger">', '</div>'); ?> 
                                 </p>
                                 <p class="login button"> 
                                     <input type="submit" value="Login" /> 
                                 </p>
                                 <p class="change_link">
                                     Belum Punya Account?
-                                    <a href="register.php" class="to_register">Register</a>
+                                    <a href="<?php echo base_url("register"); ?>" class="to_register">Register</a>
                                 </p>
-                            </form>
+                            <?php
+                form_close();
+                ?>
                         </div>
                     </div>
                 </div>  
