@@ -29,7 +29,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="alert alert-success">
-								<strong>Daftar Nama Jenis Kerusakan Handphone</strong> 
+								<strong>Daftar Nama Jenis Kerusakan</strong> 
 							</div>
 						</div>
 					</div>
