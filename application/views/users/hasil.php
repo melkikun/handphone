@@ -44,43 +44,59 @@
                                     </thead>
                                     <tbody>
                                         <?php 
+                                        //mendapatkan input nilai cf
 										$cf = $this->input->get("cf");
+                                        //mendapatkan id gejala pada database
 										$id = $this->input->get('id');
+                                        // mengambil nilai id gejala sampai dengan n-1
 										$idInclude = substr($id, 0, strlen($id)-1);
+                                        //query untuk mengambil kesimpulan dari relasi 
 										$sql ="
 											SELECT DISTINCT r.id_relasi, r.id_solusi, sk.nama AS nama_solusi, sk.kode AS kode_solusi, r.id_jenis, jk.kode AS kode_jenis, jk.nama AS nama_jenis
 FROM relasi r
 INNER JOIN solusi_kerusakan sk ON sk.id = r.id_solusi
 INNER JOIN jenis_kerusakan jk ON jk.id = r.id_jenis
 WHERE r.id_gejala IN($idInclude)";
+                                        //proses hasil query di dabase untuk forrward chaining mana yang berhubungan
 										$query =  $this->db->query($sql);
+                                        //looping untuk proses forward chaining
                                         foreach ($query->result_array() as $key => $value) {
                                             ?>
                                             <tr>
                                             	<td class="text-center"><?php echo($key+1) ?></td>
                                                 <td>
                                                     <?php 
+                                                    //menampung nomer data
                                                     $nomer = array();
+                                                    //menampung nilai cf pakar
                                                     $cfPakar = array();
+                                                    //mengambi id solusi dari query pertama
                                                     $id_solusi = $value['id_solusi']; 
+                                                    //mengambil id relasi dari query pertama
                                                     $id_relasi = $value['id_relasi'];
+                                                    //query ke dua untuk menimpilkan relasi forward chaining mana yang akan sesuai dengan gejala
                                                         $sqlx= "select r.*, gk.nama, gk.kode, gk.cf from relasi r 
                                                                 inner join gejala_kerusakan gk 
                                                                 on gk.id = r.id_gejala
                                                                 where r.id_solusi = $id_solusi and r.id_relasi = $id_relasi and r.id_gejala in ($idInclude)";
+                                                                //proses query ke dua
                                                                 $queryx = $this->db->query($sqlx);
+                                                                // menampilkan nilai dari gejala kerusakan
                                                         foreach ($queryx->result_array() as $valuex) {
+                                                            //proses print gejala kerusakan
                                                             echo($valuex['kode']." -- ". $valuex['nama'] . " | ($valuex[cf]) ")."<br>";
                                                             array_push($nomer, $valuex['id_gejala']);
                                                             array_push($cfPakar, $valuex['cf']);
                                                         }
                                                      ?>
                                                 </td>
+                                                <!-- menampilkan jenis kerusakan -->
                                             	<td><?php echo $value['kode_jenis']." -- ".$value['nama_jenis'] ?></td>
-                                            	
+                                            	<!-- menampilkan solusi kerusakan -->
                                             	<td><?php echo $value['kode_solusi']." -- ".$value['nama_solusi'] ?></td>
                                             	<td class="text-center">
                                             		<?php 
+                                                    //proses perhitungan nilai cf user
                                             		$perhitungan = array();
                                             		$id = str_replace("'", "", $idInclude);
                                             		$cfInclude = str_replace("'", "", substr($cf, 0, strlen($cf)-1));
@@ -90,7 +106,6 @@ WHERE r.id_gejala IN($idInclude)";
                                             			for($j = 0; $j  < count($nomer); $j++){
                                             				if($nomer[$j] == $idSplit[$i]){
                                             					$hasil = $cfPakar[$j]*$cfSplit[$i];
-                                            					// echo $nomer[$j]. " == " . $cfPakar[$j] . " == ". $cfSplit[$i]."<br/>";
                                             					echo  "G".$nomer[$j]." (".$cfSplit[$i] . ")" . "<br/>";
                                             				}
                                             			}
@@ -100,23 +115,33 @@ WHERE r.id_gejala IN($idInclude)";
                                             	<td class="text-center">
                                             		<b>
                                             		<?php 
+                                                    //proses perhitugan forward chaining untuk 1 gejala
                                             		$perhitungan = array();
+                                                    //mengambil id 
                                             		$id = str_replace("'", "", $idInclude);
+                                                    //mengambil id incude
                                             		$cfInclude = str_replace("'", "", substr($cf, 0, strlen($cf)-1));
+                                                    //split id  dengan koma
                                             		$idSplit = explode(',', $id);
+                                                    //splig id inlude dengan koma
                                             		$cfSplit = explode(',', $cfInclude);
+                                                    //proses looping dan peritungan
                                             		for($i = 0; $i < count($idSplit); $i++){
                                             			for($j = 0; $j  < count($nomer); $j++){
                                             				if($nomer[$j] == $idSplit[$i]){
                                             					$hasil = $cfPakar[$j]*$cfSplit[$i];
-                                            					// echo $nomer[$j]. " == " . $cfPakar[$j] . " == ". $cfSplit[$i]."<br/>";
                                             					array_push($perhitungan, $hasil);
                                             				}
                                             			}
                                             		}
+                                                    //proses perhitungan forward chaining 
+                                                    //1. jika jummlah gejala adalah 1 maka nilai perhitungan sesuai dengan perhitungan sebelumnya
+                                                    // CFgejala1 = CF(user)*CF(pakar)
                                             		if(count($perhitungan) == 1){
                                             			echo number_format($perhitungan[0],2)."%";
                                             		}else if(count($perhitungan) == 2){
+                                                        //jika nilai gejala adalah 2 maka dia akan menggunakan cf combine 
+                                                        // CFcombine1(CFgejala1,CFgejala2) = CFgejala1+ CFgejala2*(1- CFgejala1)
                                             			$cfCombine = $perhitungan[0]+$perhitungan[1]*(1-$perhitungan[0]);
                                             			echo(number_format($cfCombine,2))."%";
                                             		}else{

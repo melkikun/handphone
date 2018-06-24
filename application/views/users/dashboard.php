@@ -102,42 +102,56 @@
         order:false,
         info:false
     });
+                                    //fungsi untuk merubah nilai cf
                                     function rubahCf(param) {
+                                        //mengambil dropdown pada nilai cf user
                                         var cf = ($('#cf'+param).val());
+                                        //jika cf  bernilai 0 maka check box akan di disable
                                         if(cf == 0.0){
                                              $('#cb'+param).removeAttr('disabled');
                                             $('#cb'+param).prop("checked", false);
                                              $('#cb'+param).attr('disabled',"");
                                         }else{
+                                            //sebaliknya jika nilai cf user tidak 0 maka checkbox akan menjadi check otomatis
                                             $('#cb'+param).removeAttr('disabled');
                                             $('#cb'+param).prop("checked", true);
                                              $('#cb'+param).attr('disabled',"");
                                         }
                                     }
 
+                                    //fungsi untuk submit
                                     function submit(){
+                                        //inisialiasai cf user
                                         var cfUser = "";
+                                        // inisialiasai cf gejala
                                         var idGejala = "";
+                                        //inisialiasasi datatable untuk pengambilan nilai cf
                                         var rows = $('#table-input').dataTable().fnGetNodes();
+                                        //melakukan looping pada table
                                         for (var x = 0; x < rows.length; x++) {
+                                            //melakukan check jika nilai cf user tidak 0
                                             var nilaiCfUser = $(rows[x]).find("td:eq(3)").find("select").val();
                                             if(nilaiCfUser != 0.0){
+                                                //menambahkan nilai cf user ke varable
                                                 cfUser += "'"+nilaiCfUser+"',";
                                                 var id = $(rows[x]).find("td:eq(3)").find("select").attr("id").replace("cf", "");
+                                                //menambahkan idgejala ke variable
                                                 idGejala += "'"+id+"',";
                                             }
                                         }
+                                        //konfirmasi lanjut proses atau tidak
                                         if(cfUser != ""){
                                             var cf = confirm("Apa anda yakin submit?");
                                             if(cf == true){
+                                                //menuju halaman kesimpulan
                                            window.location.href="<?php echo base_url("user/submit/cf"); ?>" + "?cf="+cfUser +"&id="+idGejala;
                                             }
                                             
                                         }else{
                                             alert("anda tidak mencentang apapun")
                                         }
-                                        console.log(cfUser);
-                                        console.log(idGejala);
+                                        // console.log(cfUser);
+                                        // console.log(idGejala);
                                     }
 
         </script>
