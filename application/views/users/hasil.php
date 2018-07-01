@@ -153,7 +153,12 @@
                                                         $cfCombine2 = $cfCombine+($perhitungan[2]*(1-$cfCombine));
                                                         $cfCombine3 = $cfCombine2+($perhitungan[3]*(1-$cfCombine2));
                                                         echo(number_format($cfCombine3*100, 2))."%";
-                                                        echo($perhitungan[0].$perhitungan[1].$perhitungan[2].$perhitungan[3]);
+                                                    }else if(count($perhitungan) == 4){
+                                                        $cfCombine = $perhitungan[0]+($perhitungan[1]*(1-$perhitungan[0]));
+                                                        $cfCombine2 = $cfCombine+($perhitungan[2]*(1-$cfCombine));
+                                                        $cfCombine3 = $cfCombine2+($perhitungan[3]*(1-$cfCombine2));
+                                                        $cfCombine4 = $cfCombine3+($perhitungan[4]*(1-$cfCombine3));
+                                                        echo(number_format($cfCombine4*100, 2))."%";
                                                     }
                                             		?>
                                             	</b>
@@ -170,6 +175,61 @@
             </section>
             <hr/>
         </div>
+         <!-- MODAL -->
+      <div class="modal fade" tabindex="-1" role="dialog" id="bantuan">
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title text-center">Keterangan Bantuan</h4>
+               </div>
+               <div class="modal-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">No</th>
+                            <th class="text-center">Nilai CF</th>
+                            <th class="text-center">Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">1</td>
+                            <td class="text-center">0.2</td>
+                            <td class="text-left">Sangat Tidak Yakin</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">21</td>
+                            <td class="text-center">0.4</td>
+                            <td class="text-left">Tidak Yakin</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">31</td>
+                            <td class="text-center">0.6</td>
+                            <td class="text-left">CUkup Yakin</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">41</td>
+                            <td class="text-center">0.8</td>
+                            <td class="text-left">Yakin</td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">51</td>
+                            <td class="text-center">1.0</td>
+                            <td class="text-left">Sangat Yakin</td>
+                        </tr>
+                    </tbody>
+                </table>
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+            </div>
+            <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
         <!-- jQuery -->
         <script src="<?php echo base_url("assets/users/"); ?>template/js/jquery.min.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/js/bootstrap.min.js"></script>
@@ -179,5 +239,10 @@
         <script src="<?php echo base_url("assets/users/"); ?>template/js/jquery.inview.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/js/script.js"></script>
         <script src="<?php echo base_url("assets/users/"); ?>template/contactform/contactform.js"></script>
+        <script type="text/javascript">
+          function test(){
+                                     $('#bantuan').modal('show');
+                                 }
+        </script>
     </body>
 </html>
