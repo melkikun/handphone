@@ -232,7 +232,7 @@
         function submitRelasi(){
           var solusi = $('#solusi').val();
           var jenis = $('#jenis').val();
-           var gejala = [];
+          var gejala = [];
           $('#table-gejala').find('tbody').find('tr').each(function(index, el) {
                     var $td = $(this).find('td');
                     var $td1 = $td.eq(0).text();

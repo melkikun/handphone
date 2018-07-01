@@ -190,7 +190,7 @@ class Admin_model extends CI_Model
         $gejalax = substr($gejala, 0,strlen($gejala)-1);
         $jenisx = $param['jenis'];
         $solusix = $param['solusi'];
-        $delete = "delete from relasi where id_jenis = $jenisx and id_solusi = $solusix and id_gejala in ($gejalax)";
+        $delete = "delete from relasi where id_jenis = $jenisx and id_solusi = $solusix";
         $query = $this->db->query($delete);
 
         $max_relasi = "select distinct max(id_relasi) as maximum from relasi";

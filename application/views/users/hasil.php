@@ -53,10 +53,10 @@
                                         //query untuk mengambil kesimpulan dari relasi 
 										$sql ="
 											SELECT DISTINCT r.id_relasi, r.id_solusi, sk.nama AS nama_solusi, sk.kode AS kode_solusi, r.id_jenis, jk.kode AS kode_jenis, jk.nama AS nama_jenis
-FROM relasi r
-INNER JOIN solusi_kerusakan sk ON sk.id = r.id_solusi
-INNER JOIN jenis_kerusakan jk ON jk.id = r.id_jenis
-WHERE r.id_gejala IN($idInclude)";
+                                            FROM relasi r
+                                            INNER JOIN solusi_kerusakan sk ON sk.id = r.id_solusi
+                                            INNER JOIN jenis_kerusakan jk ON jk.id = r.id_jenis
+                                            WHERE r.id_gejala IN($idInclude)";
                                         //proses hasil query di dabase untuk forrward chaining mana yang berhubungan
 										$query =  $this->db->query($sql);
                                         //looping untuk proses forward chaining
@@ -144,11 +144,17 @@ WHERE r.id_gejala IN($idInclude)";
                                                         // CFcombine1(CFgejala1,CFgejala2) = CFgejala1+ CFgejala2*(1- CFgejala1)
                                             			$cfCombine = $perhitungan[0]+$perhitungan[1]*(1-$perhitungan[0]);
                                             			echo(number_format($cfCombine,2))."%";
-                                            		}else{
+                                            		}else if(count($perhitungan) == 3){
                                             			$cfCombine = $perhitungan[0]+($perhitungan[1]*(1-$perhitungan[0]));
                                             			$cfCombine2 = $cfCombine+($perhitungan[2]*(1-$cfCombine));
                                             			echo(number_format($cfCombine2*100, 2))."%";
-                                            		}
+                                            		}else if(count($perhitungan) == 4){
+                                                        $cfCombine = $perhitungan[0]+($perhitungan[1]*(1-$perhitungan[0]));
+                                                        $cfCombine2 = $cfCombine+($perhitungan[2]*(1-$cfCombine));
+                                                        $cfCombine3 = $cfCombine2+($perhitungan[3]*(1-$cfCombine2));
+                                                        echo(number_format($cfCombine3*100, 2))."%";
+                                                        echo($perhitungan[0].$perhitungan[1].$perhitungan[2].$perhitungan[3]);
+                                                    }
                                             		?>
                                             	</b>
                                             	</td>
